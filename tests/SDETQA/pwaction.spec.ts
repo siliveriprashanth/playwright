@@ -47,13 +47,13 @@ test("Radio buttons", async ({page})=>{
 
 })
 
-test.only("check box actions", async ({page})=>{
+// test.only("check box actions", async ({page})=>{
     
-    await page.goto("https://testautomationpractice.blogspot.com/");
+//     await page.goto("https://testautomationpractice.blogspot.com/");
 
-     const sundaycheckbox:Locator=page.getByLabel('Sunday');
-     await sundaycheckbox.check();
-     await expect(sundaycheckbox).toBeChecked();
+//      const sundaycheckbox:Locator=page.getByLabel('Sunday');
+//      await sundaycheckbox.check();
+//      await expect(sundaycheckbox).toBeChecked();
      
 
     // await page.waitForTimeout(5000);
