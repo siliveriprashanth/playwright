@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/loginpage';
+import { LoginPage } from '../../pages/loginpage';
 
-test('User can login successfully', async ({ page }) => {
+test('User can login successfully @smoke', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   await loginPage.goto();
