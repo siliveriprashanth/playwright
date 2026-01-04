@@ -1,6 +1,8 @@
-import { test, expect } from "../../fixtures/auth.fixture";
+import { test } from "../../fixtures/auth.fixture";
+import { DashboardPage } from "../../pages/dashboardpage";
 
 test("User stays logged in on dashboard", async ({ page }) => {
-  await expect(page).toHaveURL(/logged-in-successfully/);
-  await expect(page.getByText(/Congratulations/i)).toBeVisible();
+  const dashboard = new DashboardPage(page);
+
+  await dashboard.verifyLoginSuccess();
 });

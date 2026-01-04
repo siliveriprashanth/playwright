@@ -1,22 +1,38 @@
-import { Page } from '@playwright/test';
+import { Page, expect } from "@playwright/test";
+import { BasePage } from "./basepage";
 
-export class LoginPage {
-  constructor(private page: Page) {}
+export class LoginPage extends BasePage {
+
+  constructor(page: Page) {
+    super(page);
+  }
+
+  get username() {
+    return this.page.getByLabel("Username");
+  }
+
+  get password() {
+    return this.page.getByLabel("Password");
+  }
+
+  get submitBtn() {
+    return this.page.getByRole("button", { name: "Submit" });
+  }
 
   async goto() {
-    await this.page.goto('https://practicetestautomation.com/practice-test-login/');
+    await this.visit("https://practicetestautomation.com/practice-test-login/");
   }
 
-  async login(username: string, password: string) {
-    await this.page.fill('#username', username);
-    await this.page.fill('#password', password);
-    await this.page.click('#submit');
-
-    await this.page.waitForURL('**/logged-in-successfully/');
+  async login(user: string, pass: string) {
+    await this.username.fill(user);
+    await this.password.fill(pass);
+    await this.submitBtn.click();
   }
 
-  isLoginSuccessful() {
-    // Case-insensitive text — much more reliable
-    return this.page.getByText(/logged in successfully/i);
+  async isLoginSuccessful() {
+    await expect(
+      this.page.getByText(/successfully logged in/i)
+    ).toBeVisible();
   }
 }
+
