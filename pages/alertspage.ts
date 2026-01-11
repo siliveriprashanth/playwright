@@ -15,7 +15,7 @@ export class AlertsPage extends BasePage {
     return this.page.locator("#result");
   }
 
-  // 🔔 Simple Alert (OK)
+  //  Simple Alert (OK)
   async acceptSimpleAlert() {
     this.page.once("dialog", async dialog => {
       await dialog.accept();
@@ -25,7 +25,7 @@ export class AlertsPage extends BasePage {
     await expect(this.result).toHaveText("You successfully clicked an alert");
   }
 
-  // ⚠ Confirm Alert (OK / Cancel)
+  //  Confirm Alert (OK / Cancel)
   async confirmAlert(accept: boolean) {
     this.page.once("dialog", async dialog => {
       if (accept) await dialog.accept();
@@ -35,7 +35,7 @@ export class AlertsPage extends BasePage {
     await this.page.getByText("Click for JS Confirm").click();
   }
 
-  // ✍ Prompt Alert (enter text + OK)
+  //  Prompt Alert (enter text + OK)
   async promptAlert(text: string) {
     this.page.once("dialog", async dialog => {
       await dialog.accept(text);
